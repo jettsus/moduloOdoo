@@ -1,0 +1,7 @@
+<odoo>
+    <record id="salida_alumno_1" model="salida.alumno">
+        <field name="alumno_id" ref="base.res_partner_3"/>
+        <field name="fecha_salida">2024-03-01 12:00:00</field>
+        <field name="autorizado">True</field>
+    </record>
+</odoo>
