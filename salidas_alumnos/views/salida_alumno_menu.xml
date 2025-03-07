@@ -1,0 +1,7 @@
+<odoo>
+    <!-- Menú principal -->
+    <menuitem id="menu_salida_alumno_root" name="Gestión de salidas" sequence="10"/>
+
+    <!-- Submenú para la opción -->
+    <menuitem id="menu_salida_alumno" name="Control de Salidas" parent="menu_salida_alumno_root" sequence="10" action="action_salida_alumno"/>
+</odoo>

@@ -8,6 +8,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/salida_alumno_views.xml',
+        'views/salida_alumno_menu.xml', 
     ],
     'installable': True,
     'application': True,

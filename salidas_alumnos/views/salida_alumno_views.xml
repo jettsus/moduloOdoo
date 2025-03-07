@@ -1,18 +1,63 @@
 <odoo>
-    <record id="view_salida_alumno_tree" model="ir.ui.view">
-        <field name="name">salida.alumno.tree</field>
+    <!-- Acción para abrir la vista -->
+    <record id="action_salida_alumno" model="ir.actions.act_window">
+        <field name="name">Salidas de Alumnos</field>
+        <field name="res_model">salida.alumno</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    <record id="view_salida_alumno_kanban" model="ir.ui.view">
+        <field name="name">salida.alumno.kanban</field>
         <field name="model">salida.alumno</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="alumno_id"/>
-                <field name="fecha_salida"/>
-                <field name="autorizado"/>
-                <field name="curso"/>
-                <field name="grupo"/>
-            </tree>
+            <kanban sample="1">
+                <field name="id" />
+                <field name="curso" />
+                <field name="grupo" />
+                <field name="fecha_salida" />
+                <field name="autorizado" />
+                <progressbar field="autorizado" colors="{&quot;True&quot;: &quot;success&quot;, &quot;False&quot;: &quot;danger&quot;}" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_image me-1">
+                                <img t-att-src="kanban_image('salida.alumno', 'imagen', record.id.raw_value)" alt="Alumno" class="o_image_64_contain" />
+                            </div>
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_record_top mb-0">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="alumno_id" />
+                                        </strong>
+                                    </div>
+                                </div>
+                                <t t-if="record.curso.value">
+                                    <div>Curso: <field name="curso" /></div>
+                                </t>
+                                <t t-if="record.grupo.value">
+                                    <div>Grupo: <field name="grupo" /></div>
+                                </t>
+                                <t t-if="record.fecha_salida.value">
+                                    <div>Fecha de salida: <field name="fecha_salida" /></div>
+                                </t>
+                                <div>
+                                    <t t-if="record.autorizado.raw_value">
+                                        <span class="badge bg-success">Autorizado</span>
+                                    </t>
+                                    <t t-if="record.autorizado.raw_value == False">
+                                        <span class="badge bg-danger">No Autorizado</span>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 
+
+    <!-- Vista de formulario -->
     <record id="view_salida_alumno_form" model="ir.ui.view">
         <field name="name">salida.alumno.form</field>
         <field name="model">salida.alumno</field>
@@ -20,11 +65,12 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="alumno_id"/>
-                        <field name="fecha_salida"/>
-                        <field name="autorizado"/>
-                        <field name="curso"/>
-                        <field name="grupo"/>
+                        <field name="imagen" widget="image" />
+                        <field name="alumno_id" />
+                        <field name="fecha_salida" />
+                        <field name="autorizado" />
+                        <field name="curso" />
+                        <field name="grupo" />
                     </group>
                 </sheet>
             </form>
