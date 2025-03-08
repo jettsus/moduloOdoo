@@ -3,7 +3,7 @@
     <record id="action_salida_alumno" model="ir.actions.act_window">
         <field name="name">Salidas de Alumnos</field>
         <field name="res_model">salida.alumno</field>
-        <field name="view_mode">kanban,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <record id="view_salida_alumno_kanban" model="ir.ui.view">
@@ -56,6 +56,19 @@
         </field>
     </record>
 
+    <record id="view_salida_alumno_tree" model="ir.ui.view">
+    <field name="name">salida.alumno.tree</field>
+    <field name="model">salida.alumno</field>
+    <field name="arch" type="xml">
+        <tree string="Lista de Salidas">
+            <field name="alumno_id"/>
+            <field name="fecha_salida"/>
+            <field name="autorizado"/>
+            <field name="curso"/>
+            <field name="grupo"/>
+        </tree>
+    </field>
+</record>
 
     <!-- Vista de formulario -->
     <record id="view_salida_alumno_form" model="ir.ui.view">
